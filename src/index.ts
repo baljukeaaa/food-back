@@ -1,22 +1,33 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
+// import dotev from "dotenv";
+
 import mongoose from "mongoose";
 import { Food } from "./schema/Food";
 import { foodRouter } from "./routes/food";
 import { categoryRouter } from "./routes/category";
 import { Category } from "./schema/Category";
 import { authRouter } from "./routes/auth";
+// import dotev from "dotenv";
 
+
+// dotenv.config();
 const port = 8000;
 const app = express();
 
 
+
 app.use(express.json());
+
+app.use(cors());
 
 app.use("/api/v1/food",foodRouter)
 
 app.use("/api/v1/category",categoryRouter)
 
 app.use("/api/v1/auth",authRouter)
+
+
 
 
 app.get('/', (_req: Request, res: Response) => {
